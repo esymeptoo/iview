@@ -251,7 +251,7 @@
             },
             // 3.4.0
             maxTagPlaceholder: {
-                type: String
+                type: Function
             }
         },
         mounted(){
@@ -437,6 +437,8 @@
                 if (query === null) {
                     this.onQueryChange('');
                     this.values = [];
+                    // #5620,修复清空搜索关键词后，重新搜索相同的关键词没有触发远程搜索
+                    this.lastRemoteQuery = '';
                 }
             },
             clearSingleSelect(){ // PUBLIC API
